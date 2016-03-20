@@ -11,3 +11,10 @@
 /log/*
 !/log/.keep
 /tmp
+
+# bundler
+vendor/bin
+vendor/bundle
+
+# RubyMine
+.idea/
