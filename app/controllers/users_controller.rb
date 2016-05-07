@@ -16,6 +16,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        log_in @user
+        flash[:success] = 'ユーザーを登録しました。'
         format.html { redirect_to @user, notice: 'User was successfully created.' }
       else
         format.html { render :new }
