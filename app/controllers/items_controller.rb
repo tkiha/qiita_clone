@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:new, :edit, :create, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :set_item, only: [:show]
 
   def index
     @items = Item.all
@@ -9,14 +11,14 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
+    @item = current_user.items.build
   end
 
   def edit
   end
 
   def create
-    @item = Item.new(item_params)
+    @item = current_user.items.build(item_params)
 
     respond_to do |format|
       if @item.save
@@ -49,7 +51,12 @@ class ItemsController < ApplicationController
       @item = Item.find(params[:id])
     end
 
+    def correct_user
+      @item = current_user.items.find(params[:id])
+      redirect_to root_url if @item.nil?
+    end
+
     def item_params
-      params.fetch(:item, {})
+      params.require(:item).permit(:title, :content)
     end
 end
