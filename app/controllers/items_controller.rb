@@ -1,15 +1,17 @@
 class ItemsController < ApplicationController
-  before_action :logged_in_user, only: [:new, :edit, :create, :update, :destroy]
-  before_action :correct_user, only: [:edit, :update, :destroy]
   before_action :set_item, only: [:show]
+  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
+  before_action :correct_user_set_item, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.all
   end
 
   def show
-    @comment = current_user.comments.build
-    @stock = current_user.stocks.find_by(item: @item)
+    @comment = Comment.new
+    if logged_in?
+      @stock = current_user.stocks.find_by(item: @item)
+    end
   end
 
   def new
@@ -53,9 +55,12 @@ class ItemsController < ApplicationController
       @item = Item.find(params[:id])
     end
 
-    def correct_user
+    def correct_user_set_item
       @item = current_user.items.find(params[:id])
-      redirect_to root_url if @item.nil?
+      if @item.nil?
+        flash[:danger] = "権限がありません。"
+        redirect_to :back
+      end
     end
 
     def item_params

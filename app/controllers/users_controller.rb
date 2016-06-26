@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show]
+  before_action :authenticate_user!, only: %i(edit update destroy)
+  before_action :correct_user_set_user, only: %i(edit update destroy)
 
   def show
   end
@@ -49,6 +51,14 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
+
+    def correct_user_set_user
+      @user = User.find(params[:id])
+      unless current_user == @user
+        flash[:danger] = "権限がありません。"
+        redirect_to :back
+      end
     end
 end
 
