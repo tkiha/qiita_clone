@@ -17,6 +17,8 @@ gem 'bootstrap-sass'
 gem 'haml-rails'
 gem 'erb2haml'
 
+gem 'simple_form'
+
 group :development, :test do
   gem 'byebug'
 

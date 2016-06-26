@@ -1,22 +1,22 @@
 %h1 Listing items
 
-%table
+%table.table.table-striped
   %thead
     %tr
       %th
         タイトル
       %th
-      %th
-      %th
+        アクション
 
   %tbody
     - @items.each do |item|
       %tr
-        %td= item.title
-        %td= link_to 'Show', item
-        %td= link_to 'Edit', edit_item_path(item)
-        %td= link_to 'Destroy', item, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td
+          = link_to item.title, item
+        %td
+          = link_to 'Edit', edit_item_path(item), class: 'btn btn-default btn-sm'
+          = link_to 'Destroy', item, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger btn-sm'
 
 %br
 
-= link_to 'New Item', new_item_path
+= link_to 'New Item', new_item_path, class: 'btn btn-default'
