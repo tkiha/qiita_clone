@@ -56,8 +56,8 @@ class ItemsController < ApplicationController
     end
 
     def correct_user_set_item
-      @item = current_user.items.find(params[:id])
-      if @item.nil?
+      @item = Item.find(params[:id])
+      unless @item.user == current_user
         flash[:danger] = "権限がありません。"
         redirect_to :back
       end
