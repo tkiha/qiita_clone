@@ -1,7 +1,7 @@
 %p#notice= notice
 
 %p
-  = @item.content
+  = qiita_markdown @item.content
 
 = link_to 'Edit', edit_item_path(@item)
 \|

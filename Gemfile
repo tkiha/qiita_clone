@@ -19,6 +19,8 @@ gem 'erb2haml'
 
 gem 'simple_form'
 
+gem 'qiita-markdown'
+
 group :development, :test do
   gem 'byebug'
 
