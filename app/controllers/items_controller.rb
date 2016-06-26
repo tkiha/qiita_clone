@@ -60,3 +60,4 @@ class ItemsController < ApplicationController
       params.require(:item).permit(:title, :content)
     end
 end
+

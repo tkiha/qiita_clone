@@ -6,3 +6,4 @@ module ItemsHelper
     raw html
   end
 end
+
