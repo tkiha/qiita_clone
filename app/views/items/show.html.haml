@@ -1,8 +1,26 @@
 %p#notice= notice
+.row
+  .col-sm-9
+    %h1= @item.title
+  .col-sm-3
+    %ul.list-group
+      %li.list-group-item
+        %span.badge 10
+        ストック
+      %li.list-group-item
+        %span.badge= @item.comments.length
+        コメント
+    %a.btn.btn-primary.btn-block ストック
 
-%p
   = qiita_markdown @item.content
 
-= link_to 'Edit', edit_item_path(@item)
-\|
-= link_to 'Back', items_path
+  %hr
+
+  - @item.comments.each do |comment|
+    .panel.panel-default
+      .panel-heading= comment.user.name
+      .panel-body= qiita_markdown(comment.content)
+
+
+  = render partial: 'form_comment', locals: {comment: @comment, item: @item}
+
