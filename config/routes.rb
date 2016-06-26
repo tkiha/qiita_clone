@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   resources :users, except: [:index]
   resources :items do
     resources :comments, only: %i(create)
+    resource :stock, only: %i(create destroy)
   end
 end

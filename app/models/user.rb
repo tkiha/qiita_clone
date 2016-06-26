@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
 
   has_many :items
   has_many :comments
+  has_many :stocks
+  has_many :items_stocked, through: :stocks, source: :item
 
   before_save { self.email = email.downcase }
 

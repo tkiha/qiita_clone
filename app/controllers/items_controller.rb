@@ -9,6 +9,7 @@ class ItemsController < ApplicationController
 
   def show
     @comment = current_user.comments.build
+    @stock = current_user.stocks.find_by(item: @item)
   end
 
   def new

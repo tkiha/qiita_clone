@@ -5,12 +5,12 @@
   .col-sm-3
     %ul.list-group
       %li.list-group-item
-        %span.badge 10
+        %span.badge= @item.stocks.length
         ストック
       %li.list-group-item
         %span.badge= @item.comments.length
         コメント
-    %a.btn.btn-primary.btn-block ストック
+    = item_stock_link_to(@item, @stock)
 
   = qiita_markdown @item.content
 
