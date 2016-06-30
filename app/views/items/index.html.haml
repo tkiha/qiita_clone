@@ -1,5 +1,6 @@
-%h1 Listing items
-
-.list-group
-  - @items.each do |item|
-    = link_to item.title, item, class: 'list-group-item'
+.row
+  .col-md-8
+    = render 'share/main_tab'
+    .list-group
+      - @items.each do |item|
+        = link_to item.title, item, class: 'list-group-item'
