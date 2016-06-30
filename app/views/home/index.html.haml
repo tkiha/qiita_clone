@@ -1,6 +1,6 @@
-- if logged_in?
+- unless logged_in?
   = render 'share/login'
 - else
   .row
     .col-md-8
-      = render 'share/main_tab'
+      = render partial: 'share/main_tab', locals: {user: current_user}
