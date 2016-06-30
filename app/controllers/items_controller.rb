@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   before_action :correct_user_set_item, only: [:edit, :update, :destroy]
 
   def index
-    @items = Item.all
+    @items = Item.all.recent
   end
 
   def show

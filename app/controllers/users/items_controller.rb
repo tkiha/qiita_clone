@@ -3,7 +3,7 @@ class Users::ItemsController < ApplicationController
   before_action :correct_user
 
   def index
-    @items = current_user.items
+    @items = current_user.items.recent
   end
 
   private
