@@ -3,7 +3,7 @@
     = link_to 'フィード'
   %li(role="presentation" class='#{"active" if items_path == request.fullpath}')
     = link_to 'すべての投稿', items_path
-  %li(role="presentation" class="pull-right")
-    = link_to '自分の投稿'
+  %li(role="presentation" class='pull-right #{"active" if user_items_path(user) == request.fullpath}')
+    = link_to '自分の投稿', user_items_path(user)
   %li(role="presentation" class='pull-right #{"active" if user_stocks_path(user) == request.fullpath}')
     = link_to 'ストック', user_stocks_path(user)

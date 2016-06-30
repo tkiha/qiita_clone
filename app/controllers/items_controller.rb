@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show]
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
+  before_action :set_item, only: %i(show edit update destroy)
   before_action :correct_user_set_item, only: [:edit, :update, :destroy]
 
   def index
@@ -56,10 +56,9 @@ class ItemsController < ApplicationController
     end
 
     def correct_user_set_item
-      @item = Item.find(params[:id])
       unless @item.user == current_user
         flash[:danger] = "権限がありません。"
-        redirect_to :back
+        redirect_to root_url
       end
     end
 

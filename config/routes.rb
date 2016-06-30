@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
 
   resources :users, except: %i(index) do
-    resources :stocks, controller: 'users/stocks',only: %i(index)
+    resources :stocks, controller: 'users/stocks', only: %i(index)
+    resources :items, controller: 'users/items', only: %i(index)
   end
   resources :items do
     resources :comments, only: %i(create)

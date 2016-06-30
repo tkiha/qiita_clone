@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i(show edit update destroy)
   before_action :authenticate_user!, only: %i(edit update destroy)
+  before_action :set_user, only: %i(show edit update destroy)
   before_action :correct_user_set_user, only: %i(edit update destroy)
 
   def show
@@ -56,7 +56,7 @@ class UsersController < ApplicationController
     def correct_user_set_user
       unless current_user == @user
         flash[:danger] = "権限がありません。"
-        redirect_to :back
+        redirect_to root_url
       end
     end
 end

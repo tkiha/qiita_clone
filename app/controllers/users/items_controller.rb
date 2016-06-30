@@ -1,9 +1,9 @@
-class Users::StocksController < ApplicationController
+class Users::ItemsController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_user
 
   def index
-    @items = current_user.items_stocked
+    @items = current_user.items
   end
 
   private
