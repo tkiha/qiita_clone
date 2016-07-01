@@ -1,4 +1,4 @@
-= simple_form_for comment, url: item_comments_path(item), html: {class: 'form-horizontal'} do |f|
+= simple_form_for comment, url: item_comments_path(item) do |f|
   - if comment.errors.any?
     #error_explanation
       %h2= "#{pluralize(comment.errors.count, "error")} prohibited this item from being saved:"
