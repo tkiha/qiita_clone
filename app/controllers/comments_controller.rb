@@ -6,12 +6,10 @@ class CommentsController < ApplicationController
     @item = Item.find(params[:item_id])
     @comment.item = @item
 
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
-      else
-        format.html { render @item }
-      end
+    if @comment.save
+      redirect_to @item, notice: 'Item was successfully created.'
+    else
+      render @item
     end
   end
 
