@@ -6,6 +6,8 @@ module StocksHelper
       else
         link_to "ストック", item_stock_path(item), remote: true, method: :post, class: 'btn btn-success btn-block'
       end
+    else
+      link_to "ストック", login_path, class: 'btn btn-success btn-block'
     end
   end
 end
