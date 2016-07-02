@@ -3,7 +3,7 @@ class Users::StocksController < ApplicationController
   before_action :correct_user
 
   def index
-    @items = .items_stocked.recent
+    @items = current_user.items_stocked.recent
   end
 
   private
