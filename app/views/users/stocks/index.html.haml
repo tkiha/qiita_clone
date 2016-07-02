@@ -1,6 +1,6 @@
 .row
   .col-md-8
-    = render partial: 'share/main_tab', locals: {user: current_user}
+    = render partial: 'share/main_tab'
     .list-group
       - @items.each do |item|
         = link_to item.title, item, class: 'list-group-item'
