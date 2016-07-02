@@ -19,7 +19,7 @@ gem 'erb2haml'
 
 gem 'simple_form'
 
-gem 'qiita-markdown'
+gem 'kramdown'
 
 group :development, :test do
   gem 'byebug'

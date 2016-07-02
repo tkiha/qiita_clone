@@ -12,14 +12,14 @@
         コメント
     %span#stock-btn= item_stock_link_to(@item, @stock)
 
-  = qiita_markdown @item.content
+  = markdown_to_html @item.content
 
   %hr
 
   - @item.comments.each do |comment|
     .panel.panel-default
       .panel-heading= comment.user.name
-      .panel-body= qiita_markdown(comment.content)
+      .panel-body= markdown_to_html comment.content
 
   = render partial: 'form_comment', locals: {comment: @comment, item: @item}
 
