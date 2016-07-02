@@ -45,19 +45,19 @@ class ItemsController < ApplicationController
   end
 
   private
-    def set_item
-      @item = Item.find(params[:id])
-    end
 
-    def correct_user_set_item
-      unless @item.user == current_user
-        flash[:danger] = "権限がありません。"
-        redirect_to root_url
-      end
-    end
+  def set_item
+    @item = Item.find(params[:id])
+  end
 
-    def item_params
-      params.require(:item).permit(:title, :content)
+  def correct_user_set_item
+    unless @item.user == current_user
+      flash[:danger] = "権限がありません。"
+      redirect_to root_url
     end
+  end
+
+  def item_params
+    params.require(:item).permit(:title, :content)
+  end
 end
-

@@ -4,11 +4,12 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   private
-    def authenticate_user!
-      unless logged_in?
-        flash[:danger] = "ログインしてください。"
-        redirect_to login_url
-      end
+
+  def authenticate_user!
+    unless logged_in?
+      flash[:danger] = "ログインしてください。"
+      redirect_to login_url
     end
+  end
 end
 

@@ -39,19 +39,20 @@ class UsersController < ApplicationController
   end
 
   private
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    def correct_user_set_user
-      unless current_user == @user
-        flash[:danger] = "権限がありません。"
-        redirect_to root_url
-      end
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def correct_user_set_user
+    unless current_user == @user
+      flash[:danger] = "権限がありません。"
+      redirect_to root_url
     end
+  end
 end
 
