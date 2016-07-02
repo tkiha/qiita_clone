@@ -13,5 +13,9 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
   validates :password_digest, presence: true
 
+  def feed_items
+    # TODO: 後ほどfollowしてるtagとuserのitemを取得する
+    Item.all.recent
+  end
 end
 

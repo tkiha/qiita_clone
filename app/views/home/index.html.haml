@@ -4,3 +4,5 @@
   .row
     .col-md-8
       = render partial: 'share/main_tab', locals: {user: current_user}
+      .list-group
+        = render current_user.feed_items
