@@ -1,4 +1,3 @@
-%p#notice= notice
 .row
   .col-sm-9
     %h1= @item.title
@@ -12,14 +11,15 @@
         コメント
     %span#stock-btn= item_stock_link_to(@item, @stock)
 
-  = markdown_to_html @item.content
+%hr
 
-  %hr
+= markdown_to_html @item.content
 
-  - @item.comments.each do |comment|
-    .panel.panel-default
-      .panel-heading= comment.user.name
-      .panel-body= markdown_to_html comment.content
+%hr
 
-  = render partial: 'form_comment', locals: {comment: @comment, item: @item}
+- @item.comments.each do |comment|
+  .panel.panel-default
+    .panel-heading= comment.user.name
+    .panel-body= markdown_to_html comment.content
 
+= render partial: 'form_comment', locals: {comment: @comment, item: @item}
