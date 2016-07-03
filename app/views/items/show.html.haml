@@ -1,5 +1,8 @@
 .row
   .col-sm-9
+    %ul
+      - @item.tags.each do |tag|
+        %li= tag.name
     %h1= @item.title
   .col-sm-3
     %ul.list-group

@@ -7,6 +7,9 @@
           %li= msg
 
   = f.input :title
+  - @item.build_tags
+  = f.fields_for :tags do |tag_field|
+    = tag_field.input :name, label: 'タグ'
   = f.input :content, input_html: {rows: '20'}
   = f.button :submit
 
