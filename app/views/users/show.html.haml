@@ -1,15 +1,19 @@
-%p#notice= notice
-
-%p
-  %b Name:
-  = @user.name
-%p
-  %b Email:
-  = @user.email
-%p
-  %b Password:
-  = @user.password
-
-= link_to 'Edit', edit_user_path(@user)
-\|
-= link_to 'Back', root_path
+.row
+  .col-sm-3
+    = @user.name
+    %br
+    = @user.email
+    %br
+    = link_to 'プロフィールを編集する', edit_user_path(@user)
+    %br
+    フォロー中のタグ
+    %br
+    フォロー中のユーザー
+    %br
+    フォローされているユーザー
+  .col-sm-9
+    最近の投稿
+    |
+    ストックした投稿
+    |
+    コメント
