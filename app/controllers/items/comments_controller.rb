@@ -1,9 +1,9 @@
-class Items::CommentsController < ApplicationController
+class Items::CommentsController < Items::ApplicationController
   before_action :authenticate_user!
+  before_action :set_item
 
   def create
     @comment = current_user.comments.build(comment_params)
-    @item = Item.find(params[:item_id])
     @comment.item = @item
 
     if @comment.save
