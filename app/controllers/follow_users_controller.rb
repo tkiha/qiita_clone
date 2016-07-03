@@ -4,12 +4,10 @@ class FollowUsersController < ApplicationController
 
   def create
     current_user.follow @user
-    render js: 'location.reload();'
   end
 
   def destroy
     current_user.unfollow @user
-    render js: 'location.reload();'
   end
 
   private

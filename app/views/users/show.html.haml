@@ -7,16 +7,22 @@
     - if current_user == @user
       = link_to 'プロフィールを編集する', edit_user_path(@user)
     - else
-      = user_follow_link_to @user, @follow_user
+      %span#follow-btn
+        = user_follow_link_to @user
     %br
-    フォロー中のタグ
-    %br
-    フォロー中のユーザー
-    %br
-    フォローされているユーザー
   .col-sm-9
     最近の投稿
     |
     ストックした投稿
     |
     コメント
+    |
+    フォロー中のタグ
+    |
+    フォロワー
+    %span#follower-num
+      = @user.followers.count
+    |
+    フォロー中のユーザー
+    %span#following-num
+      = @user.following.count

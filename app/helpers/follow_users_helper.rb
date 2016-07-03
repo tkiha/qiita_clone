@@ -1,5 +1,5 @@
 module FollowUsersHelper
-  def user_follow_link_to(other_user, follow_user)
+  def user_follow_link_to(other_user)
     if logged_in?
       if current_user.following? other_user
         link_to 'フォローを解除', user_follow_user_path(other_user), remote: true, method: :delete, class: 'btn btn-danger btn-block'
