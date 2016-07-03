@@ -10,7 +10,12 @@ Rails.application.routes.draw do
   resources :users, except: %i(index) do
     resources :stocks, controller: 'users/stocks', only: %i(index)
     resources :items, controller: 'users/items', only: %i(index)
-    resource :follow_user, controller: 'users/follow_users', only: %i(create destroy)
+    resource :follow_user, controller: 'users/follow_users', only: %i(create destroy) do
+      collection do
+        get 'followers'
+        get 'following'
+      end
+    end
   end
   resources :items do
     resources :comments, controller: 'items/comments', only: %i(create)

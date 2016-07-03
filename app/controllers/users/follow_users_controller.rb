@@ -10,6 +10,14 @@ class Users::FollowUsersController < ApplicationController
     current_user.unfollow @user
   end
 
+  def followers
+    @followers = @user.followers.page(params[:page])
+  end
+
+  def following
+    @following = @user.following.page(params[:page])
+  end
+
   private
 
   def set_user
