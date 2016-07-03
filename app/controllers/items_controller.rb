@@ -2,7 +2,6 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_item, only: %i(show edit update destroy)
   before_action :correct_user, only: [:edit, :update, :destroy]
-  before_action :set_stock, only: %i(show)
 
   def index
     @items = Item.all.recent.page(params[:page])
@@ -52,12 +51,6 @@ class ItemsController < ApplicationController
     unless @item.user == current_user
       flash[:danger] = "権限がありません。"
       redirect_to root_url
-    end
-  end
-
-  def set_stock
-    if logged_in?
-      @stock = current_user.stocks.find_by(item: @item)
     end
   end
 

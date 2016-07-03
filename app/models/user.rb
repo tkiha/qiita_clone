@@ -33,4 +33,16 @@ class User < ActiveRecord::Base
   def following?(other_user)
     self.following.include?(other_user)
   end
+
+  def stock(item)
+    self.stocks.find_or_create_by!(item: item)
+  end
+
+  def unstock(item)
+    self.stocks.find_by!(item: item).destroy
+  end
+
+  def stocking?(item)
+    self.items_stocked.include?(item)
+  end
 end

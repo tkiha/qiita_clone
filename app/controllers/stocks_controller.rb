@@ -3,11 +3,11 @@ class StocksController < ApplicationController
   before_action :set_item
 
   def create
-    @stock = current_user.stocks.find_or_create_by!(item: @item)
+    current_user.stock @item
   end
 
   def destroy
-    current_user.stocks.find_by!(item: @item).destroy
+    current_user.unstock @item
   end
 
   private

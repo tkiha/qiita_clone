@@ -1,2 +1,2 @@
-$('#stock-btn').html('<%= item_stock_link_to(@item, @stock) %>');
-$('#stock-num').text('<%= @item.stocks.length %>');
+$('#stock-btn').html('<%= item_stock_link_to(@item) %>');
+$('#stock-num').text('<%= @item.stocks.count %>');
