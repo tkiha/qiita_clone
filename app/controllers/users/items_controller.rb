@@ -1,18 +1,6 @@
 class Users::ItemsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :correct_user
-
   def index
-    @items = current_user.items.recent.page(params[:page])
-  end
-
-  private
-
-  def correct_user
-    user = User.find params[:user_id]
-    unless user == current_user
-      flash[:danger] = "権限がありません。"
-      redirect_to root_url
-    end
+    @user = User.find params[:user_id]
+    @items = @user.items.recent.page(params[:page])
   end
 end

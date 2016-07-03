@@ -1,0 +1,9 @@
+%div
+  = @user.name
+  %div
+    = @user.email
+  - if current_user == @user
+    = link_to 'プロフィールを編集する', edit_user_path(@user), class: 'btn btn-info'
+  - else
+    %span#follow-btn
+      = user_follow_link_to @user

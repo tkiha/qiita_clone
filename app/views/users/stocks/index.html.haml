@@ -1,6 +1,8 @@
 .row
-  .col-md-8
-    = render partial: 'share/main_tab'
+  .col-sm-3
+    = render 'share/user_sidebar'
+  .col-sm-9
+    = render 'share/mypage_tab'
     .list-group
       = render @items
     = paginate @items
