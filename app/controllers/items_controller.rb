@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
   before_action :set_stock, only: %i(show)
 
   def index
-    @items = Item.all.recent
+    @items = Item.all.recent.page(params[:page])
   end
 
   def show
