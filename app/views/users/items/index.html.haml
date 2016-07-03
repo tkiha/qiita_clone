@@ -1,21 +1,6 @@
 .row
   .col-md-8
     = render partial: 'share/main_tab'
-    %table.table.table-striped
-      %thead
-        %tr
-          %th
-            タイトル
-          %th.pull-right
-            アクション
-
-      %tbody
-        - @items.each do |item|
-          %tr
-            %td
-              = link_to item.title, item
-            %td.pull-right
-              = link_to 'Edit', edit_item_path(item), class: 'btn btn-default btn-sm'
-              = link_to 'Destroy', item, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger btn-sm'
-
+    .list-group
+      = render @items
     = paginate @items

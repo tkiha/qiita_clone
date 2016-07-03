@@ -3,7 +3,7 @@ class Item < ActiveRecord::Base
   has_many :comments
   has_many :stocks, dependent: :destroy
   has_many :users_stocking, through: :stocks, source: :user
-  has_many :tag_items
+  has_many :tag_items, dependent: :destroy
   has_many :tags, through: :tag_items, source: :tag
 
   scope :recent, -> { order(created_at: :desc) }
