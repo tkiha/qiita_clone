@@ -4,7 +4,10 @@
     %br
     = @user.email
     %br
-    = link_to 'プロフィールを編集する', edit_user_path(@user)
+    - if current_user == @user
+      = link_to 'プロフィールを編集する', edit_user_path(@user)
+    - else
+      = user_follow_link_to @user, @follow_user
     %br
     フォロー中のタグ
     %br

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160626105423) do
+ActiveRecord::Schema.define(version: 20160703040928) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content",    limit: 65535
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 20160626105423) do
 
   add_index "comments", ["item_id"], name: "index_comments_on_item_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "follow_users", force: :cascade do |t|
+    t.integer  "follower_id", limit: 4
+    t.integer  "followed_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "follow_users", ["followed_id"], name: "index_follow_users_on_followed_id", using: :btree
+  add_index "follow_users", ["follower_id", "followed_id"], name: "index_follow_users_on_follower_id_and_followed_id", unique: true, using: :btree
+  add_index "follow_users", ["follower_id"], name: "index_follow_users_on_follower_id", using: :btree
 
   create_table "items", force: :cascade do |t|
     t.string   "title",      limit: 255
