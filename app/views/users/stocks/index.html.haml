@@ -4,3 +4,4 @@
     .list-group
       - @items.each do |item|
         = link_to item.title, item, class: 'list-group-item'
+    = paginate @items

@@ -3,7 +3,7 @@ class Users::StocksController < ApplicationController
   before_action :set_user
 
   def index
-    @items = @user.items_stocked.recent
+    @items = @user.items_stocked.recent.page(params[:page])
   end
 
   private
