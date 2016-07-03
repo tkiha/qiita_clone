@@ -18,8 +18,7 @@ class User < ActiveRecord::Base
   validates :password_digest, presence: true
 
   def feed_items
-    # TODO: 後ほどfollowしてるtagとuserのitemを取得する
-    Item.all.recent
+    Item.where(user: self.following).recent
   end
 
   def follow(other_user)
