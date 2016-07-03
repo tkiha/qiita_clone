@@ -1,0 +1,11 @@
+.row
+  .col-sm-3
+    %div
+      = @tag.name
+      %div
+        %span#follow-tag-btn
+          = tag_follow_link_to @tag
+  .col-sm-9
+    .list-group
+      = render @items
+    = paginate @items
