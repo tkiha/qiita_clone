@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: %i(edit update destroy)
   before_action :set_user, only: %i(show edit update destroy)
-  before_action :correct_user, only: %i(edit update destroy)
+  before_action :require_same_user, only: %i(edit update destroy)
 
   def show
   end
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
-  def correct_user
+  def require_same_user
     unless current_user == @user
       flash[:danger] = "権限がありません。"
       redirect_to root_url
