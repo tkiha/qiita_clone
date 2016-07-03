@@ -1,8 +1,8 @@
 .row
   .col-sm-9
-    %ul
+    %ul.list-group
       - @item.tags.each do |tag|
-        %li= tag.name
+        = link_to "タグ: #{tag.name}", tag, class: 'list-group-item'
     %h1= @item.title
   .col-sm-3
     %ul.list-group
@@ -16,7 +16,6 @@
       = link_to '編集する', edit_item_path(@item), class: 'btn btn-info btn-block'
     - else
       %span#stock-btn= item_stock_link_to(@item)
-
 
 %hr
 

@@ -7,5 +7,5 @@
     = link_to 'フォロワー', followers_user_follow_user_path(current_user)
   %li(role="presentation" class='#{"active" if following_user_follow_user_path(current_user) == request.fullpath}')
     = link_to 'フォロー中のユーザー', following_user_follow_user_path(current_user)
-  %li(role="presentation" class='#{"active" if user_stocks_path(current_user) == request.fullpath}')
-    = link_to 'フォロー中のタグ', user_stocks_path(current_user)
+  %li(role="presentation" class='#{"active" if user_follow_tag_index_path(current_user) == request.fullpath}')
+    = link_to 'フォロー中のタグ', user_follow_tag_index_path(current_user)

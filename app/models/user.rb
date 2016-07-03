@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   end
 
   def follow(other_user)
-    self.active_follow_users.create(followed_id: other_user.id)
+    self.active_follow_users.find_or_create_by!(followed_id: other_user.id)
   end
 
   def unfollow(other_user)
@@ -45,5 +45,17 @@ class User < ActiveRecord::Base
 
   def stocking?(item)
     self.items_stocked.include?(item)
+  end
+
+  def follow_tag(tag)
+    self.follow_tags.find_or_create_by!(tag: tag)
+  end
+
+  def unfollow_tag(tag)
+    self.follow_tags.find_by!(tag: tag).destroy
+  end
+
+  def following_tag?(tag)
+    self.tags_followed.include?(tag)
   end
 end
