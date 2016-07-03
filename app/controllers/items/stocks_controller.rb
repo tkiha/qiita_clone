@@ -1,4 +1,4 @@
-class StocksController < ApplicationController
+class Items::StocksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item
 

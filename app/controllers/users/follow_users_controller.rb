@@ -1,4 +1,4 @@
-class FollowUsersController < ApplicationController
+class Users::FollowUsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
 
