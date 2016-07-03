@@ -20,7 +20,8 @@ class User < ActiveRecord::Base
   validates :password_digest, presence: true
 
   def feed_items
-    Item.where(user: self.following).recent
+    #Item.where(user: self.following).recent
+    Item.joins(:tag_items).where(tag_items: {tag: self.tags_followed}).uniq.recent
   end
 
   def follow(other_user)
