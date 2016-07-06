@@ -41,7 +41,7 @@
                 = comment.created_at.to_s
           .panel-body= markdown_to_html comment.content
 
-      = render partial: 'form_comment', locals: {comment: @comment, item: @item}
+      = render 'form_comment', comment: @comment, item: @item
     .col-sm-3
       %section
         .item-user
