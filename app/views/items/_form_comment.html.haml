@@ -6,6 +6,6 @@
         - comment.errors.full_messages.each do |msg|
           %li= msg
 
-  = f.input :content, input_html: {rows: '5'}
-  = f.button :submit
+  = f.input :content, input_html: {rows: '5'}, label: 'コメント'
+  = f.button :submit, '投稿する', class: 'btn btn-success pull-right'
 
