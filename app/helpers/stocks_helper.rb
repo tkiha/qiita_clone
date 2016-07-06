@@ -4,7 +4,7 @@ module StocksHelper
       if current_user.stocking? item
         link_to 'ストックを解除', item_stock_path(item), remote: true, method: :delete, class: 'btn btn-danger btn-block'
       else
-        link_to 'ストック', item_stock_path(item), remote: true, method: :post, class: 'btn btn-success btn-block'
+        link_to 'ストック', item_stock_path(item), remote: true, method: :post, class: 'btn btn-primary btn-block'
       end
     else
       link_to 'ストック', login_path, class: 'btn btn-success btn-block'
