@@ -1,8 +1,9 @@
-.row
-  .col-sm-3
-    = render 'share/user_sidebar'
-  .col-sm-9
-    = render 'share/mypage_tab'
-    .list-group
-      = render @following
-    = paginate @following
+.container
+  .row
+    .col-sm-3
+      = render 'share/user_sidebar'
+    .col-sm-9
+      = render 'share/mypage_tab'
+      .list-group
+        = render @following
+      = paginate @following

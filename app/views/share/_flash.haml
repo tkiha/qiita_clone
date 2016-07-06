@@ -1,0 +1,7 @@
+- flash.each do |msg_type, message|
+  - if message.present?
+    %div(class="alert alert-#{msg_type} alert-dismissible")
+      %button(type="button" class="close" data-dismiss="alert" aria-label="Close")
+        %span(aria-hidden="true")
+          &times;
+      = message

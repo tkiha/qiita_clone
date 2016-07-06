@@ -1,5 +1,6 @@
-%h1 Editing item
+.container
+  %h1 Editing item
 
-= render 'form'
+  = render 'form'
 
 = link_to '記事を削除する', item_path(@item), method: :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger pull-right'

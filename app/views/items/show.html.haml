@@ -1,31 +1,35 @@
-.row
-  .col-sm-9
-    %ul.list-group
-      - @item.tags.each do |tag|
-        = link_to "タグ: #{tag.name}", tag, class: 'list-group-item'
-    %h1= @item.title
-  .col-sm-3
-    %ul.list-group
-      %li.list-group-item
-        %span.badge#stock-num= @item.stocks.length
-        ストック
-      %li.list-group-item
-        %span.badge= @item.comments.length
-        コメント
-    - if current_user == @item.user
-      = link_to '編集する', edit_item_path(@item), class: 'btn btn-info btn-block'
-    - else
-      %span#stock-btn= item_stock_link_to(@item)
+.container
+  .row
+    .col-sm-9
+      %ul.list-group
+        - @item.tags.each do |tag|
+          = link_to "タグ: #{tag.name}", tag, class: 'list-group-item'
+      %h1= @item.title
+    .col-sm-3
+      %ul.list-group
+        %li.list-group-item
+          %span.badge#stock-num= @item.stocks.length
+          ストック
+        %li.list-group-item
+          %span.badge= @item.comments.length
+          コメント
+      - if current_user == @item.user
+        = link_to '編集する', edit_item_path(@item), class: 'btn btn-info btn-block'
+      - else
+        %span#stock-btn= item_stock_link_to(@item)
+  .row
+    .col-sm-9
+      = markdown_to_html @item.content
 
-%hr
+      %hr
 
-= markdown_to_html @item.content
+      - @item.comments.each do |comment|
+        .panel.panel-default
+          .panel-heading
+            = link_to comment.user.name, comment.user
+            %time.pull-right
+              %small
+                = comment.created_at.to_s
+          .panel-body= markdown_to_html comment.content
 
-%hr
-
-- @item.comments.each do |comment|
-  .panel.panel-default
-    .panel-heading= comment.user.name
-    .panel-body= markdown_to_html comment.content
-
-= render partial: 'form_comment', locals: {comment: @comment, item: @item}
+      = render partial: 'form_comment', locals: {comment: @comment, item: @item}
