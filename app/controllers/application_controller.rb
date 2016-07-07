@@ -15,5 +15,9 @@ class ApplicationController < ActionController::Base
   def set_item
     @item = Item.find(params[:item_id])
   end
+
+  def set_user
+    @user = User.find(params[:user_id])
+  end
 end
 

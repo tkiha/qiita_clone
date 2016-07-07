@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: %i(edit update destroy)
-  before_action :set_user, only: %i(show edit update destroy)
+  before_action :set_user, only: %i(show edit update destroy items stocks tags followers following)
   before_action :require_same_user, only: %i(edit update destroy)
 
   def show
@@ -36,6 +36,26 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     redirect_to users_url, notice: 'User was successfully destroyed.'
+  end
+
+  def items
+    @items = @user.items.recent.page(params[:page])
+  end
+
+  def stocks
+    @items = @user.items_stocked.recent.page(params[:page])
+  end
+
+  def tags
+    @tags = @user.tags_followed.page(params[:page])
+  end
+
+  def followers
+    @followers = @user.followers.page(params[:page])
+  end
+
+  def following
+    @following = @user.following.page(params[:page])
   end
 
   private

@@ -8,15 +8,14 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
 
   resources :users, except: %i(index) do
-    resources :stocks, controller: 'users/stocks', only: %i(index)
-    resources :items, controller: 'users/items', only: %i(index)
-    resource :follow_user, controller: 'users/follow_users', only: %i(create destroy) do
-      collection do
-        get 'followers'
-        get 'following'
-      end
+    member do
+      get 'items'
+      get 'stocks'
+      get 'tags'
+      get 'followers'
+      get 'following'
     end
-    resources :follow_tag, controller: 'users/follow_tags', only: %i(index)
+    resource :follow_user, only: %i(create destroy)
   end
   resources :items do
     resources :comments, only: %i(create)
