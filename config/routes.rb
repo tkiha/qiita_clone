@@ -23,6 +23,6 @@ Rails.application.routes.draw do
     resource :stock, only: %i(create destroy)
   end
   resources :tags, only: %i(show) do
-    resource :follow_user, controller: 'tags/follow_tags', only: %i(create destroy)
+    resource :follow_tag, only: %i(create destroy)
   end
 end
