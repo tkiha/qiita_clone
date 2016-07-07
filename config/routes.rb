@@ -19,8 +19,8 @@ Rails.application.routes.draw do
     resources :follow_tag, controller: 'users/follow_tags', only: %i(index)
   end
   resources :items do
-    resources :comments, controller: 'items/comments', only: %i(create)
-    resource :stock, controller: 'items/stocks', only: %i(create destroy)
+    resources :comments, only: %i(create)
+    resource :stock, only: %i(create destroy)
   end
   resources :tags, only: %i(show) do
     resource :follow_user, controller: 'tags/follow_tags', only: %i(create destroy)

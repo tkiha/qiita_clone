@@ -1,4 +1,4 @@
-class Items::CommentsController < Items::ApplicationController
+class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item
 

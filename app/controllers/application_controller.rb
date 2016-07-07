@@ -11,5 +11,9 @@ class ApplicationController < ActionController::Base
       redirect_to login_url
     end
   end
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
 end
 
