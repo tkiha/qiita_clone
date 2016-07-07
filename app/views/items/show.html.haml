@@ -37,7 +37,7 @@
           .panel-heading
             = link_to comment.user.name, comment.user
             %time.pull-right
-              %small
+              %small.text-muted
                 = comment.created_at.to_s
           .panel-body= markdown_to_html comment.content
 
