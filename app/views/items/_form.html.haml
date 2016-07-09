@@ -6,9 +6,8 @@
         - @item.errors.full_messages.each do |msg|
           %li= msg
 
-  = f.input :title
-  = f.input :tags, input_html: { value: "#{@item.tags.pluck(:name).join(' ')}", placeholder: 'タグをスペース区切りで入力' }
-  = f.input :content, input_html: {rows: '20'}
+  = f.input :title, placeholder: 'タイトル', label: false
+  = f.input :tags, input_html: { value: "#{@item.tags.pluck(:name).join(' ')}"}, placeholder: 'タグをスペース区切りで入力', label: false
+  = f.input :content, input_html: {rows: '20'}, placeholder: 'マークダウンを記入', label: false
   = f.input :aasm_state, as: :select, required: true, selected: 'published', collection: [['下書き保存', 'draft'] ,['Qiitaに投稿', 'published']], include_blank: false, label: false
-
-  = f.button :submit
+  = f.button :submit, '保存'
