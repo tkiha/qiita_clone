@@ -8,11 +8,21 @@ class Item < ActiveRecord::Base
 
   scope :recent, -> { order(created_at: :desc) }
 
-  accepts_nested_attributes_for :tags
+  include AASM
 
-  def build_tags
-    (5-tags.length).times do
-      self.tags.build
+  aasm do
+    state :draft, initial: true
+    state :published
+
+    event :publish do
+      after do
+        self.published_at = Time.now
+      end
+      transitions from: :draft, to: :published
+    end
+
+    event :return_to_draft do
+      transitions from: :published, to: :draft
     end
   end
 
