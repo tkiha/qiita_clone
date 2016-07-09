@@ -1,1 +1,11 @@
-= link_to item.title, item, class: 'list-group-item'
+.item-list-cell
+  .item-list-status
+    = link_to item.user.name, item.user
+    が #{item.created_at.to_s} に投稿
+  .item-list-title
+    = link_to item.title, item
+  %ul.list-inline.item-list-tags
+    - item.tags.each do |tag|
+      %li.item-list-tags-list
+        = link_to tag.name, tag, class: 'small'
+  %hr
