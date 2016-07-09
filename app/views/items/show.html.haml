@@ -49,9 +49,9 @@
             = link_to @item.user.name, @item.user
       %section
         %strong
-          人気の投稿
+          最近の投稿
         %ul
-        - @item.user.items.limit(10).each do |item|
+        - @item.user.items.recent.limit(10).each do |item|
           %li
             = link_to item.title, item
 
