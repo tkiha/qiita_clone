@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :require_same_user, only: %i(edit update destroy)
 
   def show
+    redirect_to items_user_url @user
   end
 
   def new
