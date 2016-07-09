@@ -26,12 +26,12 @@ class Item < ActiveRecord::Base
     end
   end
 
-  def tags_attributes=(tags)
-    tags.each do |_, attr|
-      if attr[:name].present?
-        tag = Tag.find_or_create_by!(name: attr[:name])
-        self.tag_items.find_or_initialize_by(tag: tag)
-      end
+  def tags=(tag_list)
+    self.tag_items.destroy_all
+    tag_array = tag_list.split
+    tag_array.each do |tag_name|
+      tag = Tag.find_or_create_by!(name: tag_name)
+      self.tag_items.find_or_initialize_by(tag: tag)
     end
   end
 end
