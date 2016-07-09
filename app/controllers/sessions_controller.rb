@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: session_params[:email])
     if @user && @user.authenticate(session_params[:password])
       log_in @user
-      redirect_to root_url
+      redirect_to root_url, flash: { success: 'ログインしました。' }
     else
       flash.now[:danger] = 'メールアドレスかパスワードが違います。'
       render 'new'
@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out
-    redirect_to root_url
+    redirect_to root_url, flash: { success: 'ログアウトしました。' }
   end
 
   private

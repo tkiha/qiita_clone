@@ -18,6 +18,7 @@
     }
   }
   .item-show-header-tags-list {
+    margin-left: 5px;
     padding-left: 5px;
     padding-right: 5px;
     background-color: white;
@@ -26,8 +27,14 @@
       color: #7e7e7e;
     }
   }
+  .item-show-header-action {
+    li {
+      margin-bottom: 10px;
+    }
+  }
+
 }
-.item-user {
+.item-sidebar-user {
   font-size: 20px;
 }
 
@@ -63,4 +70,3 @@
 ul.nav-tabs {
   margin-bottom: 10px;
 }
-

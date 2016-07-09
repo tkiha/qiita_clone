@@ -18,8 +18,7 @@ class UsersController < ApplicationController
 
     if @user.save
       log_in @user
-      flash[:success] = 'ユーザーを登録しました。'
-      redirect_to @user, notice: 'User was successfully created.'
+      redirect_to @user, flash: { success: 'ユーザーを登録しました。' }
     else
       render :new
     end
@@ -27,7 +26,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: 'User was successfully updated.'
+      redirect_to @user, flash: { success: 'ユーザー情報が編集されました。' }
     else
       render :edit
     end
@@ -35,7 +34,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to users_url, notice: 'User was successfully destroyed.'
+    redirect_to users_url, flash: { success: 'ユーザーが削除されました。' }
   end
 
   def items
@@ -70,8 +69,7 @@ class UsersController < ApplicationController
 
   def require_same_user
     unless current_user == @user
-      flash[:danger] = "権限がありません。"
-      redirect_to root_url
+      redirect_to root_url, flash: { danger: '権限がありません。' }
     end
   end
 end

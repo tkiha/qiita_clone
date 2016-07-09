@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     @comment.item = @item
 
     if @comment.save
-      redirect_to @item, notice: 'Item was successfully created.'
+      redirect_to @item, flash: { info: 'コメントが投稿されました。' }
     else
       render @item
     end

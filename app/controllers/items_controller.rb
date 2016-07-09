@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
     @item = current_user.items.build(item_params)
 
     if @item.save
-      redirect_to @item, notice: 'Item was successfully created.'
+      redirect_to @item, flash: { success: '記事が投稿されました。' }
     else
       render :new
     end
@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to @item, notice: 'Item was successfully updated.'
+      redirect_to @item, flash: { success: '記事が編集されました。' }
     else
       render :edit
     end
@@ -38,7 +38,7 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.destroy
-    redirect_to items_url, notice: 'Item was successfully destroyed.'
+    redirect_to items_url, flash: { success: '記事が削除されました。' }
   end
 
   private
@@ -49,8 +49,7 @@ class ItemsController < ApplicationController
 
   def require_my_item
     unless @item.user == current_user
-      flash[:danger] = "権限がありません。"
-      redirect_to root_url
+      redirect_to root_url, flash: { danger: '権限がありません。' }
     end
   end
 
