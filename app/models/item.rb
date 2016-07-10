@@ -28,7 +28,7 @@ class Item < ActiveRecord::Base
 
   def tags=(tag_list)
     self.tag_items.destroy_all
-    tag_array = tag_list.split
+    tag_array = tag_list.split.uniq
     tag_array.each do |tag_name|
       tag = Tag.find_or_create_by!(name: tag_name)
       self.tag_items.find_or_initialize_by(tag: tag)
