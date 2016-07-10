@@ -47,6 +47,7 @@ group :development do
   gem 'spring'
 
   gem 'bullet'
+  gem 'rack-mini-profiler'
 end
 
 group :production do
