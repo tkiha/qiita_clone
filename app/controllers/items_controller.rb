@@ -21,6 +21,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = current_user.items.build(item_params)
+    @item.published_at = Time.now if @item.published?
     if @item.save
       redirect_to @item, flash: { success: '記事が投稿されました。' }
     else
