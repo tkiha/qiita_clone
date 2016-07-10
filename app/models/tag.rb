@@ -3,4 +3,6 @@ class Tag < ActiveRecord::Base
   has_many :users, through: :follow_tags
   has_many :tag_items
   has_many :items, through: :tag_items
+
+  validates :name, presence: true
 end

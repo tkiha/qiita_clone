@@ -6,6 +6,11 @@ class Item < ActiveRecord::Base
   has_many :tag_items, dependent: :destroy
   has_many :tags, through: :tag_items, source: :tag
 
+  validates :title, presence: true
+  validates :content, presence: true
+  validates :user_id, presence: true
+  validates :aasm_state, presence: true
+
   scope :recent, -> { order(created_at: :desc) }
 
   include AASM
