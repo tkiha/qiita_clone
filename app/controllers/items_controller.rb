@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
   before_action :require_item_published, only: %i(show)
 
   def index
-    @items = Item.all.recent.published.page(params[:page])
+    @items = Item.all.recent.published.includes(:user, :tags).page(params[:page])
   end
 
   def show

@@ -38,11 +38,11 @@ class UsersController < ApplicationController
   end
 
   def items
-    @items = @user.items.published.recent.page(params[:page])
+    @items = @user.items.published.includes(:tags).recent.page(params[:page])
   end
 
   def stocks
-    @items = @user.items_stocked.published.recent.page(params[:page])
+    @items = @user.items_stocked.published.includes(:user).recent.page(params[:page])
   end
 
   def tags
@@ -58,7 +58,7 @@ class UsersController < ApplicationController
   end
 
   def draft
-    @items = current_user.items.draft.recent.page(params[:page])
+    @items = current_user.items.draft.includes(:tags).recent.page(params[:page])
   end
 
   private

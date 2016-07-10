@@ -8,7 +8,7 @@ class HomeController < ApplicationController
 
   def set_feed
     if logged_in?
-      @feed = current_user.feed_items.page(params[:page])
+      @feed = current_user.feed_items.includes(:user, :tags).page(params[:page])
     end
   end
 end
