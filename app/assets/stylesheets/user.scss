@@ -1,0 +1,19 @@
+// user/show
+.user-show-sidebar {
+  .user-show-image {
+    .gravatar {
+      width: 100%;
+    }
+
+    margin-bottom: 20px;
+  }
+
+  .user-show-name {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .user-show-button {
+     margin-top: 20px;
+  }
+}

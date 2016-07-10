@@ -47,6 +47,7 @@
     .col-sm-3
       %section
         .item-sidebar-user
+          = gravatar_for(@item.user)
           %strong
             = link_to @item.user.name, @item.user
       %section

@@ -1,9 +1,13 @@
-%div
-  = @user.name
-  %div
+.user-show-sidebar
+  .user-show-image
+    = gravatar_for @user
+  .user-show-name
+    = @user.name
+  .user-show-email
     = @user.email
-  - if current_user == @user
-    = link_to 'プロフィールを編集する', edit_user_path(@user), class: 'btn btn-info'
-  - else
-    %span#follow-btn
-      = user_follow_link_to @user
+  .user-show-button
+    - if current_user == @user
+      = link_to 'プロフィールを編集する', edit_user_path(@user), class: 'btn btn-info'
+    - else
+      %span#follow-btn
+        = user_follow_link_to @user
