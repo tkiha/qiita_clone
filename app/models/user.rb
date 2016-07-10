@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   def feed_items
     Item.where(user: self.following).union(
       Item.joins(tags: :users).where(users: {id: self.id})
-    ).uniq.recent
+    ).uniq.recent.published
   end
 
   def follow(other_user)

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: %i(edit update destroy)
-  before_action :set_user, only: %i(show edit update destroy items stocks tags followers following)
-  before_action :require_same_user, only: %i(edit update destroy)
+  before_action :authenticate_user!, only: %i(edit update destroy draft)
+  before_action :set_user, only: %i(show edit update destroy items stocks tags followers following draft)
+  before_action :require_same_user, only: %i(edit update destroy draft)
 
   def show
     redirect_to items_user_url @user
@@ -16,7 +16,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
     if @user.save
       log_in @user
       redirect_to @user, flash: { success: 'ユーザーを登録しました。' }
@@ -39,11 +38,11 @@ class UsersController < ApplicationController
   end
 
   def items
-    @items = @user.items.recent.page(params[:page])
+    @items = @user.items.published.recent.page(params[:page])
   end
 
   def stocks
-    @items = @user.items_stocked.recent.page(params[:page])
+    @items = @user.items_stocked.published.recent.page(params[:page])
   end
 
   def tags
@@ -56,6 +55,10 @@ class UsersController < ApplicationController
 
   def following
     @following = @user.following.page(params[:page])
+  end
+
+  def draft
+    @items = current_user.items.draft.recent.page(params[:page])
   end
 
   private

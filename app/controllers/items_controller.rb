@@ -2,9 +2,10 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_item, only: %i(show edit update destroy)
   before_action :require_my_item, only: [:edit, :update, :destroy]
+  before_action :require_item_published, only: %i(show)
 
   def index
-    @items = Item.all.recent.page(params[:page])
+    @items = Item.all.recent.published.page(params[:page])
   end
 
   def show
@@ -20,7 +21,6 @@ class ItemsController < ApplicationController
 
   def create
     @item = current_user.items.build(item_params)
-
     if @item.save
       redirect_to @item, flash: { success: '記事が投稿されました。' }
     else
@@ -50,6 +50,12 @@ class ItemsController < ApplicationController
   def require_my_item
     unless @item.user == current_user
       redirect_to root_url, flash: { danger: '権限がありません。' }
+    end
+  end
+
+  def require_item_published
+    unless @item.published?
+      require_my_item
     end
   end
 

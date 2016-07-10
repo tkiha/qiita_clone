@@ -9,3 +9,6 @@
     = link_to 'フォロー中のユーザー', following_user_path(@user)
   %li(role="presentation" class='#{"active" if current_page? tags_user_path(@user)}')
     = link_to 'フォロー中のタグ', tags_user_path(@user)
+  - if @user == current_user
+    %li(role="presentation" class='#{"active" if current_page? draft_user_path(@user)}')
+      = link_to '下書き', draft_user_path(@user)

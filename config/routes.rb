@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       get 'tags'
       get 'followers'
       get 'following'
+      get 'draft'
     end
     resource :follow_user, only: %i(create destroy)
   end
