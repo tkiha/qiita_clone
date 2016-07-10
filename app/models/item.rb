@@ -11,7 +11,8 @@ class Item < ActiveRecord::Base
   validates :user_id, presence: true
   validates :aasm_state, presence: true
 
-  scope :recent, -> { order(created_at: :desc) }
+  scope :recent, -> { order(published_at: :desc) }  # items.published が前につくはずなので、 recent_published とはしない
+  scope :recent_created, -> { order(created_at: :desc) }
 
   include AASM
 

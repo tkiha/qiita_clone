@@ -10,7 +10,7 @@
           = link_to @item.user.name, @item.user
           が
           %time
-            = @item.created_at.to_s
+            = @item.published_at.to_s
           に投稿
       .col-sm-3
         %ul.list-group
@@ -53,5 +53,5 @@
         %strong
           最近の投稿
         %ul
-        = content_tag_for :li, @item.user.items.recent.limit(10) do |item|
+        = content_tag_for :li, @item.user.items.published.recent.limit(10) do |item|
           = link_to item.title, item

@@ -58,7 +58,7 @@ class UsersController < ApplicationController
   end
 
   def draft
-    @items = current_user.items.draft.includes(:tags).recent.page(params[:page])
+    @items = current_user.items.draft.includes(:tags).recent_created.page(params[:page])
   end
 
   private

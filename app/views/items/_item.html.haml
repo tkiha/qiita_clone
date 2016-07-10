@@ -1,7 +1,7 @@
 .item-list-cell
   .item-list-status
     = link_to item.user.name, item.user
-    が #{item.created_at.to_s} に投稿
+    が #{item.published_at.to_s} に投稿
   .item-list-title
     = link_to item.title, item
   %ul.list-inline.item-list-tags
