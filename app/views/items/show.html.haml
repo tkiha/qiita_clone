@@ -4,9 +4,8 @@
       .col-sm-9
         %h1.item-show-header-title= @item.title
         %ul.list-inline.item-show-header-tags
-          - @item.tags.each do |tag|
-            %li.item-show-header-tags-list
-              = link_to tag.name, tag, class: 'small'
+          = content_tag_for :li, @item.tags, class: 'item-show-header-tags-list' do |tag|
+            = link_to tag.name, tag, class: 'small'
         .item-show-header-time
           = link_to @item.user.name, @item.user
           が
@@ -42,8 +41,8 @@
               %small.text-muted
                 = comment.created_at.to_s
           .panel-body= markdown_to_html comment.content
-
       = render 'form_comment', comment: @comment, item: @item
+
     .col-sm-3
       %section
         .item-sidebar-user
@@ -54,7 +53,5 @@
         %strong
           最近の投稿
         %ul
-        - @item.user.items.recent.limit(10).each do |item|
-          %li
-            = link_to item.title, item
-
+        = content_tag_for :li, @item.user.items.recent.limit(10) do |item|
+          = link_to item.title, item

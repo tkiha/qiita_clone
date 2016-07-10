@@ -5,7 +5,6 @@
   .item-list-title
     = link_to item.title, item
   %ul.list-inline.item-list-tags
-    - item.tags.each do |tag|
-      %li.item-list-tags-list
-        = link_to tag.name, tag, class: 'small'
+    = content_tag_for :li, item.tags, class: 'item-list-tags-list' do |tag|
+      = link_to tag.name, tag, class: 'small'
   %hr
