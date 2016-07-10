@@ -5,4 +5,11 @@ class FollowUser < ActiveRecord::Base
   validates :follower_id, presence: true
   validates :followed_id, presence: true
   validates :follower_id, uniqueness: { scope: :followed_id }
+  validate :user_cannot_follow_self
+
+  def user_cannot_follow_self
+    if follower_id == followed_id
+      errors.add(:follower_id, ': 自分自身をフォローできません。')
+    end
+  end
 end
