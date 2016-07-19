@@ -5,8 +5,9 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :stocks
   has_many :items_stocked, through: :stocks, source: :item
-  has_many :active_follow_users, class_name: 'FollowUser', foreign_key: :follower_id
-  has_many :passive_follow_users, class_name: 'FollowUser', foreign_key: :followed_id
+  # 細かいですが、class_nameもシンボルで統一したいです。
+  has_many :active_follow_users, class_name: :FollowUser, foreign_key: :follower_id
+  has_many :passive_follow_users, class_name: :FollowUser, foreign_key: :followed_id
   has_many :following, through: :active_follow_users, source: :followed
   has_many :followers, through: :passive_follow_users, source: :follower
   has_many :follow_tags

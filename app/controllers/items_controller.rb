@@ -1,11 +1,13 @@
 class ItemsController < ApplicationController
+  # 細かいですが、配列の記法が統一されていないのが気になりました。（%iで書くことが多いと思います）
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_item, only: %i(show edit update destroy)
   before_action :require_my_item, only: [:edit, :update, :destroy]
   before_action :require_item_published, only: %i(show)
 
   def index
-    @items = Item.all.recent.published.includes(:user, :tags).page(params[:page])
+    # .all無しでもいけますね
+    @items = Item.recent.published.includes(:user, :tags).page(params[:page])
   end
 
   def show

@@ -32,6 +32,9 @@ class Item < ActiveRecord::Base
     end
   end
 
+  # acts-as-taggable-onを使えば、このあたりすっきりしそうな気がします。
+  # https://github.com/mbleigh/acts-as-taggable-on
+  # http://ruby-rails.hatenadiary.com/entry/20150225/1424858414
   def tags=(tag_list)
     self.tag_items.destroy_all
     tag_array = tag_list.split.uniq

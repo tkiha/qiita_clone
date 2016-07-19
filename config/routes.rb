@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'home#index'
 
+  # あえてかもしれませんが、実際の開発ではDEVISE(https://github.com/plataformatec/devise)を使うケースが多いと思います。
   get 'signup' => 'users#new'
 
   get 'login' => 'sessions#new'
